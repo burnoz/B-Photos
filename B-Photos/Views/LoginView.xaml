@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="B_Photos.Views.LoginView"
+             Title="LoginView">
+
+    <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+
+        <Image Source="dotnet_bot.png" HeightRequest="100" HorizontalOptions="Center" />
+
+        <Label Text="Iniciar Sesión" FontSize="28" FontAttributes="Bold" HorizontalOptions="Center" />
+
+        <Entry Placeholder="Usuario o Correo" 
+               Text="{Binding Username}" 
+               Keyboard="Email" />
+
+        <Entry Placeholder="Contraseña" 
+               Text="{Binding Password}" 
+               IsPassword="True" />
+
+        <Button Text="Entrar" 
+                Command="{Binding LoginCommand}" 
+                BackgroundColor="#2196F3" 
+                TextColor="White" 
+                HeightRequest="50" />
+
+    </VerticalStackLayout>
+</ContentPage>

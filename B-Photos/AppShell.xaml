@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="B_Photos.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:B_Photos"
+    xmlns:views="clr-namespace:B_Photos.Views"
+    Title="B_Photos">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate views:LoginView
+        }"
+        Route="LoginPage"
+        Shell.TabBarIsVisible="False" />
+
+    <TabBar Route="MainApp">
+        <Tab Title="Galería" Icon="gallery_icon.png">
+            <ShellContent 
+                Title="Fotos"
+                ContentTemplate="{DataTemplate views:GalleryView}" 
+                Route="GalleryPage" />
+        </Tab>
+
+        <Tab Title="Álbumes" Icon="albums_icon.png">
+            <ShellContent 
+                Title="Mis Álbumes"
+                ContentTemplate="{DataTemplate views:AlbumsView}" 
+                Route="AlbumsPage" />
+        </Tab>
+    </TabBar>
+
+</Shell>
