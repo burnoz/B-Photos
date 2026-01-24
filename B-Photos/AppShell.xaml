@@ -5,21 +5,34 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:B_Photos"
     xmlns:views="clr-namespace:B_Photos.Views"
+    xmlns:helpers="clr-namespace:B_Photos.Helpers"
     Title="B_Photos">
 
     <ShellContent
         Title="Login"
-        ContentTemplate="{DataTemplate views:LoginView
-        }"
+        ContentTemplate="{DataTemplate views:LoginView}"
         Route="LoginPage"
         Shell.TabBarIsVisible="False" />
 
     <TabBar Route="MainApp">
-        <Tab Title="Galería" Icon="gallery_icon.png">
+        <!--<Tab Title="Galería" Icon="gallery_icon.png">
             <ShellContent 
                 Title="Fotos"
                 ContentTemplate="{DataTemplate views:GalleryView}" 
                 Route="GalleryPage" />
+        </Tab>-->
+
+        <Tab Title="Galería">
+            <Tab.Icon>
+                <FontImageSource 
+                    FontFamily="MaterialIcons" 
+                    Glyph="{Static helpers:IconFont.Image}"
+                    Size="24" 
+                    Color="Gray" />
+            </Tab.Icon>
+            
+            <ShellContent ContentTemplate="{DataTemplate views:GalleryView}"
+                          Route="GalleryPage"/>
         </Tab>
 
         <Tab Title="Álbumes" Icon="albums_icon.png">

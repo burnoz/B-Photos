@@ -15,19 +15,19 @@ namespace B_Photos
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+                    fonts.AddFont("MaterialIcons-Regular.ttf", "MaterialIcons");
                 });
 
 #if DEBUG
     		builder.Logging.AddDebug();
 #endif
 
-            // Views
             // ViewModels
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<GalleryViewModel>();
             builder.Services.AddTransient<AlbumsViewModel>();
 
-            // Pages
+            // Views
             builder.Services.AddTransient<LoginView>();
             builder.Services.AddTransient<GalleryView>();
             builder.Services.AddTransient<AlbumsView>();
