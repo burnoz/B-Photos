@@ -35,11 +35,24 @@
                           Route="GalleryPage"/>
         </Tab>
 
-        <Tab Title="Álbumes" Icon="albums_icon.png">
+        <!--<Tab Title="Álbumes" Icon="albums_icon.png">
             <ShellContent 
                 Title="Mis Álbumes"
                 ContentTemplate="{DataTemplate views:AlbumsView}" 
                 Route="AlbumsPage" />
+        </Tab>-->
+
+        <Tab Title="Álbumes">
+            <Tab.Icon>
+                <FontImageSource 
+                    FontFamily="MaterialIcons" 
+                    Glyph="{Static helpers:IconFont.Photo_library}"
+                    Size="24" 
+                    Color="Gray" />
+            </Tab.Icon>
+
+            <ShellContent ContentTemplate="{DataTemplate views:AlbumsView}"
+                          Route="AlbumsPage"/>
         </Tab>
     </TabBar>
 

@@ -1,4 +1,5 @@
-﻿using B_Photos.ViewModels;
+﻿using B_Photos.Services;
+using B_Photos.ViewModels;
 using B_Photos.Views;
 using Microsoft.Extensions.Logging;
 
@@ -31,6 +32,10 @@ namespace B_Photos
             builder.Services.AddTransient<LoginView>();
             builder.Services.AddTransient<GalleryView>();
             builder.Services.AddTransient<AlbumsView>();
+
+            // Services
+            builder.Services.AddHttpClient<IApiService, ApiService>();
+            builder.Services.AddTransient<GalleryViewModel>();
 
             return builder.Build();
         }

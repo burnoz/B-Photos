@@ -4,10 +4,22 @@
              xmlns:helpers="clr-namespace:B_Photos.Helpers"
              x:Class="B_Photos.Views.GalleryView"
              Title="GalleryView">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+
+    <CollectionView ItemsSource="{Binding Photos}" Margin="2">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="3" 
+                             HorizontalItemSpacing="2" 
+                             VerticalItemSpacing="2" />
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Image Source="{Binding ImageURL}" 
+                       Aspect="AspectFill" 
+                       HeightRequest="130" 
+                       WidthRequest="130" />
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
+
 </ContentPage>
