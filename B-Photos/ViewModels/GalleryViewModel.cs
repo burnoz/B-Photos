@@ -26,6 +26,7 @@ public class GalleryViewModel
             {
                 Title = $"Foto {i}",
                 ImageURL = $"https://picsum.photos/300/300?random={i}",
+                ImageThumbnailURL = $"https://picsum.photos/100/100?random={i}",
                 DateTaken = DateTime.Now.AddDays(-i)
             });
         }

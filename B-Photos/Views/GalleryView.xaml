@@ -14,7 +14,7 @@
 
         <CollectionView.ItemTemplate>
             <DataTemplate>
-                <Image Source="{Binding ImageURL}" 
+                <Image Source="{Binding ImageThumbnailURL}" 
                        Aspect="AspectFill" 
                        HeightRequest="130" 
                        WidthRequest="130" />
