@@ -14,11 +14,13 @@ namespace B_Photos.Services
             _httpClient.BaseAddress = new Uri(BaseUrl);
         }
 
-        public async Task<List<Photo>> GetPhotosAsync()
+        public async Task<List<Photo>> GetPhotosAsync(int page, int pageSize)
         {
+            var url = $"photo?page={page}&pageSize={pageSize}";
+
             try
             {
-                var photos = await _httpClient.GetFromJsonAsync<List<Photo>>("photo");
+                var photos = await _httpClient.GetFromJsonAsync<List<Photo>>(url);
                 return photos ?? new List<Photo>();
             }
             catch (Exception ex)

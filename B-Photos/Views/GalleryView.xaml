@@ -3,23 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:helpers="clr-namespace:B_Photos.Helpers"
              x:Class="B_Photos.Views.GalleryView"
+             xmlns:models="clr-namespace:B_Photos.Models"
              Title="GalleryView">
 
-    <CollectionView ItemsSource="{Binding Photos}" Margin="2">
+    <CollectionView ItemsSource="{Binding Photos}"
+                RemainingItemsThreshold="3"
+                RemainingItemsThresholdReachedCommand="{Binding LoadMorePhotosCommand}">
+
         <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical" Span="3" 
-                             HorizontalItemSpacing="2" 
-                             VerticalItemSpacing="2" />
+            <GridItemsLayout Orientation="Vertical" Span="3" />
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
-            <DataTemplate>
+            <DataTemplate x:DataType="models:Photo">
                 <Image Source="{Binding ImageThumbnailURL}" 
-                       Aspect="AspectFill" 
-                       HeightRequest="130" 
-                       WidthRequest="130" />
+                   Aspect="AspectFill" 
+                   HeightRequest="130" />
             </DataTemplate>
         </CollectionView.ItemTemplate>
+
+        <CollectionView.Footer>
+            <ActivityIndicator IsRunning="{Binding IsLoading}" 
+                           IsVisible="{Binding IsLoading}"
+                           HorizontalOptions="Center" />
+        </CollectionView.Footer>
     </CollectionView>
 
 </ContentPage>

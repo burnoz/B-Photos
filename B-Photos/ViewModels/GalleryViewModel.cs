@@ -1,45 +1,50 @@
-﻿using System.Collections.ObjectModel;
-using System.Diagnostics;
-using B_Photos.Models;
+﻿using B_Photos.Models;
 using B_Photos.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System.Collections.ObjectModel;
 
 namespace B_Photos.ViewModels;
 
-public class GalleryViewModel
+public partial class GalleryViewModel : ObservableObject
 {
     private readonly IApiService _apiService;
-    public ObservableCollection<Photo> Photos { get; set; }
+    private int _currentPage = 1;
+    private readonly int PageSize = 30;
+
+    [ObservableProperty]
+    private bool isLoading;
+
+    public ObservableCollection<Photo> Photos { get; } = new();
 
     public GalleryViewModel(IApiService apiService)
     {
         _apiService = apiService;
-        Photos = [];
-        //LoadMockData();
-        _ = LoadPhotosAsync();
     }
 
-    private void LoadMockData()
+    [RelayCommand]
+    public async Task LoadMorePhotos()
     {
-        for (int i = 1; i <= 20; i++)
+        if (IsLoading) return;
+
+        try
         {
-            Photos.Add(new Photo
+            IsLoading = true;
+
+            var newPhotos = await _apiService.GetPhotosAsync(_currentPage, PageSize);
+
+            if (newPhotos.Any())
             {
-                Title = $"Foto {i}",
-                ImageURL = $"https://picsum.photos/300/300?random={i}",
-                ImageThumbnailURL = $"https://picsum.photos/100/100?random={i}",
-                DateTaken = DateTime.Now.AddDays(-i)
-            });
+                foreach (var photo in newPhotos)
+                {
+                    Photos.Add(photo);
+                }
+                _currentPage++;
+            }
         }
-    }
-
-    private async Task LoadPhotosAsync()
-    {
-        var photos = await _apiService.GetPhotosAsync();
-
-        foreach (var photo in photos)
+        finally
         {
-            Console.WriteLine(photo.Title);
-            Photos.Add(photo);
+            IsLoading = false;
         }
     }
 }

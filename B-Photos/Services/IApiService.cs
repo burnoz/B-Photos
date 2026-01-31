@@ -6,6 +6,6 @@ namespace B_Photos.Services
 {
     public interface IApiService
     {
-        Task<List<Photo>> GetPhotosAsync();
+        Task<List<Photo>> GetPhotosAsync(int page, int pageSize);
     }
 }
