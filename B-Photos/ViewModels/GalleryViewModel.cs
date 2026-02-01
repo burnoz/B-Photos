@@ -1,5 +1,6 @@
 ﻿using B_Photos.Models;
 using B_Photos.Services;
+using B_Photos.Views;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -12,8 +13,15 @@ public partial class GalleryViewModel : ObservableObject
     private int _currentPage = 1;
     private readonly int PageSize = 30;
 
-    [ObservableProperty]
-    private bool isLoading;
+    //[ObservableProperty]
+    //private bool isLoading;
+
+    private bool _isLoading;
+    public bool IsLoading
+    {
+        get => _isLoading;
+        set => SetProperty(ref _isLoading, value);
+    }
 
     public ObservableCollection<Photo> Photos { get; } = new();
 
