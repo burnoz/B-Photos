@@ -55,4 +55,17 @@ public partial class GalleryViewModel : ObservableObject
             IsLoading = false;
         }
     }
+
+    [RelayCommand]
+    private async Task NavigateToPhotoDetail(Photo photo)
+    {
+        if (photo == null) return;
+
+        var navigationParameter = new Dictionary<string, object>
+        {
+            { "Photo", photo }
+        };
+
+        await Shell.Current.GoToAsync(nameof(PhotoDetailView), navigationParameter);
+    }   
 }

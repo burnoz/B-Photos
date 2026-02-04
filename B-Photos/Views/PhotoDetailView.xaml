@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="B_Photos.Views.PhotoDetailView"
+             Title="{Binding Photo.Title}">
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="15">
+            <Image Source="{Binding Photo.ImageURL}"
+                   Aspect="AspectFit"
+                   HeightRequest="400"/>
+            
+            <Label Text="{Binding Photo.Title}"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"/>
+            
+            <Label Text="{Binding Photo.DateTaken, StringFormat='{0:dd/MM/yyyy HH:mm}'}"
+                   FontSize="16"
+                   HorizontalOptions="Center"
+                   TextColor="Gray"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

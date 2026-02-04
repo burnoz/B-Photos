@@ -27,15 +27,16 @@ namespace B_Photos
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<GalleryViewModel>();
             builder.Services.AddTransient<AlbumsViewModel>();
+            builder.Services.AddTransient<PhotoDetailViewModel>();
 
             // Views
             builder.Services.AddTransient<LoginView>();
             builder.Services.AddTransient<GalleryView>();
             builder.Services.AddTransient<AlbumsView>();
+            builder.Services.AddTransient<PhotoDetailView>();
 
             // Services
             builder.Services.AddHttpClient<IApiService, ApiService>();
-            builder.Services.AddTransient<GalleryViewModel>();
 
             return builder.Build();
         }

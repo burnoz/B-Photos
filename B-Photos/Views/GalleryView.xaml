@@ -4,6 +4,8 @@
              xmlns:helpers="clr-namespace:B_Photos.Helpers"
              x:Class="B_Photos.Views.GalleryView"
              xmlns:models="clr-namespace:B_Photos.Models"
+             xmlns:viewmodels="clr-namespace:B_Photos.ViewModels"
+             x:DataType="viewmodels:GalleryViewModel"
              Title="GalleryView">
 
     <CollectionView ItemsSource="{Binding Photos}"
@@ -11,14 +13,20 @@
                 RemainingItemsThresholdReachedCommand="{Binding LoadMorePhotosCommand}">
 
         <CollectionView.ItemsLayout>
-            <GridItemsLayout Orientation="Vertical" Span="3" />
+            <GridItemsLayout Orientation="Vertical" Span="{OnPlatform Android=3, WinUI=5}" />
         </CollectionView.ItemsLayout>
 
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Photo">
                 <Image Source="{Binding ImageThumbnailURL}" 
-                   Aspect="AspectFill" 
-                   HeightRequest="130" />
+                       Aspect="AspectFill" 
+                       HeightRequest="130">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer 
+                            Command="{Binding Source={RelativeSource AncestorType={x:Type viewmodels:GalleryViewModel}}, Path=NavigateToPhotoDetailCommand}"
+                            CommandParameter="{Binding .}" />
+                    </Image.GestureRecognizers>
+                </Image>
             </DataTemplate>
         </CollectionView.ItemTemplate>
 
